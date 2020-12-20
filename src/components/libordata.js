@@ -3,8 +3,11 @@ import DataTable, {createTheme} from "react-data-table-component";
 import Typography from "@material-ui/core/Typography";
 import {Button} from "@material-ui/core";
 import {ExcelRenderer} from "react-excel-renderer";
-// import {excelToJson} from 'convert-excel-to-json';
-const excelToJson = require('convert-excel-to-json');
+import * as XLSX from 'xlsx';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css"
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 
 createTheme('solarized', {
     text: {
@@ -28,45 +31,60 @@ createTheme('solarized', {
     },
 });
 const LiborData = () => {
-    const [arr,setArr]=useState([]);
-   let data1=[];
-   let rows=[];
-    const fetchExcelData=(e)=>{
+    const [arr1, setArr1] = useState([]);
+    const [arr2, setArr2] = useState([]);
+    const [arr3, setArr3] = useState([]);
+    const [arr4, setArr4] = useState([]);
+    let data1 = [];
+    let rows = [];
+    const responsive = {
+        desktop: {
+            breakpoint: {max: 3000, min: 1024},
+            items: 1,
+            slidesToSlide: 1 // optional, default to 1.
+        },
+        tablet: {
+            breakpoint: {max: 1024, min: 464},
+            items: 2,
+            slidesToSlide: 2 // optional, default to 1.
+        },
+        mobile: {
+            breakpoint: {max: 464, min: 0},
+            items: 1,
+            slidesToSlide: 1 // optional, default to 1.
+        }
+    };
+    const fetchExcelData = (e) => {
 
-        // let freader =new FileReader();
-        // let fref=new File([1000],"src/LIBOR_for_UI.xlsx");
-        // console.log("FileDetails = ",fref);
+        let fref = e.target.files[0];
+        const freader = new FileReader();
+        freader.readAsArrayBuffer(fref);
 
-        let fref=e.target.files[0];
-        ExcelRenderer(fref,(err,res)=>{
-            if(err)
-                console.log("Error = ",err);
-            else {
-                console.log("Response = ",res);
-                rows=res.rows;
-                for(var i=1;i<rows.length;i++)
-                {
-                     let temparr=rows[i];
-                     let obj={
-                         File_Name: temparr[0],
-                         File_Status: temparr[1],
-                         Contract_Type: temparr[2],
-                         Libor_Flag: temparr[3],
-                         Sofr_Flag: temparr[4],
-                         Termination_Date: temparr[5],
-                         Effective_Date: temparr[6],
-                         Contract_Amount: temparr[7],
-                         Fallback_Category: temparr[8],
-                         Risk_Profile: temparr[9]
-                     }
-                     data1.push(obj);
-                    // console.log("Obj  = ",obj);
+        freader.onload = (e) => {
+            const result = e.target.result;
+            const wb = XLSX.read(result, {type: 'buffer'});
 
-                }
-                setArr(data1);
-                console.log("New Array Size = ",arr.length);
-            }
-            })
+            const wsName1 = wb.SheetNames[0];
+            const wsName2 = wb.SheetNames[1];
+            const wsName3 = wb.SheetNames[2];
+            const wsName4 = wb.SheetNames[3];
+
+            const ws1 = wb.Sheets[wsName1];
+            const ws2 = wb.Sheets[wsName2];
+            const ws3 = wb.Sheets[wsName3];
+            const ws4 = wb.Sheets[wsName4];
+
+            const data1 = XLSX.utils.sheet_to_json(ws1);
+            const data2 = XLSX.utils.sheet_to_json(ws2);
+            const data3 = XLSX.utils.sheet_to_json(ws3);
+            const data4 = XLSX.utils.sheet_to_json(ws4);
+            setArr1(data1);
+            setArr2(data2);
+            setArr3(data3);
+            setArr4(data4);
+            console.log("Data = ", data4);
+        }
+
     }
     const columns = [
         {
@@ -111,66 +129,110 @@ const LiborData = () => {
         },
     ];
 
-    // const data = [{
-    //     File_Name: "Credit_Agreement_EARTHSTONE_ENERGY.pdf",
-    //     File_Status: "Ready for Verification",
-    //     Contract_Type: "Credit_Agreement",
-    //     Libor_Flag: "Yes",
-    //     Sofr_Flag: "Yes",
-    //     Termination_Date: "November 21 ,2024",
-    //     Effective_Date: "November 21, 2019",
-    //     Contract_Amount: "325000000",
-    //     Fallback_Category: "Fallback ARRC like",
-    //     Risk_Profile: "Strong"
-    // }, {
-    //     File_Name: "Credit_Agreement_EARTHSTONE_ENERGY.pdf",
-    //     File_Status: "Ready for Verification",
-    //     Contract_Type: "Credit_Agreement",
-    //     Libor_Flag: "Yes",
-    //     Sofr_Flag: "Yes",
-    //     Termination_Date: "November 21 ,2024",
-    //     Effective_Date: "November 21, 2019",
-    //     Contract_Amount: "325000000",
-    //     Fallback_Category: "Fallback ARRC like",
-    //     Risk_Profile: "Strong"
-    // }, {
-    //     File_Name: "Credit_Agreement_EARTHSTONE_ENERGY.pdf",
-    //     File_Status: "Ready for Verification",
-    //     Contract_Type: "Credit_Agreement",
-    //     Libor_Flag: "Yes",
-    //     Sofr_Flag: "Yes",
-    //     Termination_Date: "November 21 ,2024",
-    //     Effective_Date: "November 21, 2019",
-    //     Contract_Amount: "325000000",
-    //     Fallback_Category: "Fallback ARRC like",
-    //     Risk_Profile: "Strong"
-    // }, {
-    //     File_Name: "Credit_Agreement_EARTHSTONE_ENERGY.pdf",
-    //     File_Status: "Ready for Verification",
-    //     Contract_Type: "Credit_Agreement",
-    //     Libor_Flag: "Yes",
-    //     Sofr_Flag: "Yes",
-    //     Termination_Date: "November 21 ,2024",
-    //     Effective_Date: "November 21, 2019",
-    //     Contract_Amount: "325000000",
-    //     Fallback_Category: "Fallback ARRC like",
-    //     Risk_Profile: "Strong"
-    // }]
+    const columns1 = [
+        {
+            name: "File Name",
+            selector: "File_Name",
+        },
+        {
+            name: "Borrower",
+            selector: "Borrowers"
+        }
+    ];
+
+    const columns2 = [
+        {
+            name: "File Name",
+            selector: "File_Name",
+        },
+        {
+            name: "Lender",
+            selector: "Lender",
+        },
+        {
+            name: "Commitment",
+            selector: "Commitment",
+        }
+    ]
+
+    const columns3 = [
+        {
+            name: "File Name",
+            selector: "File_Name",
+        },
+        {
+            name: "Fallback Clause",
+            selector: "Fallback_Clause",
+        },
+        {
+            name: "Fallback Paragraph",
+            selector: "Fallback_Paragraph",
+        },
+        {
+            name: "Page Number",
+            selector: "Page_no",
+        }
+
+    ];
 
     return (
         <div>
             <div>
                 <input type={"file"} onChange={fetchExcelData}/>
-                <Button variant="contained" color="primary" onClick={fetchExcelData}>
-                    Primary
-                </Button>
             </div>
-            { arr.length!==0 &&
-                <div>
-                <Typography variant={"h4"} style={{color: "blue"}}>Details</Typography>
-                < DataTable columns={columns} data={arr} pagination theme={"solarized"}/>
-                </div>
-            }
+
+
+            <Carousel responsive={responsive}>
+                <Card>
+                    <CardContent>
+                        {arr1.length !== 0 &&
+                        <div>
+                            <Typography variant={"h4"} style={{color: "blue"}}>Libor Details</Typography>
+                            < DataTable columns={columns} data={arr1} pagination theme={"solarized"}/>
+                        </div>
+                        }
+                    </CardContent>
+
+                </Card>
+
+                <Card>
+                <CardContent>
+                    {arr1.length !== 0 &&
+                    <div>
+                        <Typography variant={"h4"} style={{color: "blue"}}>Borrowers Details</Typography>
+                        < DataTable columns={columns1} data={arr2} pagination theme={"solarized"}/>
+                    </div>
+                    }
+                </CardContent>
+
+            </Card>
+
+                <Card>
+                <CardContent>
+                    {arr1.length !== 0 &&
+                    <div>
+                        <Typography variant={"h4"} style={{color: "blue"}}>Lenders Details</Typography>
+                        < DataTable columns={columns2} data={arr3} pagination theme={"solarized"}/>
+                    </div>
+                    }
+                </CardContent>
+
+            </Card>
+
+                <Card>
+                <CardContent>
+                    {arr1.length !== 0 &&
+                    <div>
+                        <Typography variant={"h4"} style={{color: "blue"}}>Fallback Details</Typography>
+                        < DataTable columns={columns3} data={arr4} pagination theme={"solarized"}/>
+                    </div>
+                    }
+                </CardContent>
+
+            </Card>
+
+
+            </Carousel>
         </div>
     )
 

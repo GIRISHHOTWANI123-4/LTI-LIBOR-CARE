@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f5dac15-86f2-4486-8404-38540c183431" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LIBOR_for_UI.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/LTI_Lets_solve.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/batchdata.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/calculator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/libordata.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/header.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/libordata.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/libordata.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +104,7 @@
       <workItem from="1608264286254" duration="55000" />
       <workItem from="1608282150439" duration="3486000" />
       <workItem from="1608293249173" duration="5220000" />
-      <workItem from="1608450054898" duration="1490000" />
+      <workItem from="1608450054898" duration="5006000" />
     </task>
     <servers />
   </component>
