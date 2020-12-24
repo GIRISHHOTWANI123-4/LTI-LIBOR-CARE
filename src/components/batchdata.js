@@ -3,12 +3,16 @@ import axios from 'axios';
 import Header from "../shared/header";
 // https://cors-anywhere.herokuapp.com
 
+
+//this file was for batch data and api was called over here but this  is now not being used .Might be used in the future or the api
+//called over here can be used in the libordata.js file.
+
 const Batchdata = () => {
 
-    useEffect(() => {
-        async function fetchData() {
-
-            var myHeaders = new Headers();
+    useEffect(() => {                   //this is the hook which runs before the component is rendered and here all the pre-tasks like
+        async function fetchData() {          //fetching of data from the api can be done .use it carefully because the callback over here
+                                              // can't be async so create a function inside it and then call the api.use await infront of api's
+            var myHeaders = new Headers();    // because sometimes api's don't send the response quickly .the promise is returned so it is advised to use await.
             myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
             var urlencoded = new URLSearchParams();

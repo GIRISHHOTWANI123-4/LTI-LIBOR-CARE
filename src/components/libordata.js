@@ -11,6 +11,7 @@ import CardContent from "@material-ui/core/CardContent";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 
+//this component is also included in our default home page ie.APP.js .This component was also imported there as well.
 createTheme('solarized', {
     text: {
         primary: '#000f89',
@@ -33,7 +34,7 @@ createTheme('solarized', {
     },
 });
 const LiborData = () => {
-    const [arr1, setArr1] = useState([]);
+    const [arr1, setArr1] = useState([]);  // same hook concept used here as well like the one explained in the calculator file
     const [arr2, setArr2] = useState([]);
     const [arr3, setArr3] = useState([]);
     const [arr4, setArr4] = useState([]);
@@ -64,23 +65,23 @@ const LiborData = () => {
 
         freader.onload = (e) => {
             const result = e.target.result;
-            const wb = XLSX.read(result, {type: 'buffer'});
+            const wb = XLSX.read(result, {type: 'buffer'});  //XLSX lirary used to read the data from the file object.
 
-            const wsName1 = wb.SheetNames[0];
+            const wsName1 = wb.SheetNames[0];       // multiple excel sheets name can be fetched using sheetNames array.
             const wsName2 = wb.SheetNames[1];
             const wsName3 = wb.SheetNames[2];
             const wsName4 = wb.SheetNames[3];
 
-            const ws1 = wb.Sheets[wsName1];
+            const ws1 = wb.Sheets[wsName1];        // here the reference of that excel sheet is received.
             const ws2 = wb.Sheets[wsName2];
             const ws3 = wb.Sheets[wsName3];
             const ws4 = wb.Sheets[wsName4];
 
-            const data1 = XLSX.utils.sheet_to_json(ws1);
+            const data1 = XLSX.utils.sheet_to_json(ws1);   //here the excel sheet data is converted to the json format.
             const data2 = XLSX.utils.sheet_to_json(ws2);
             const data3 = XLSX.utils.sheet_to_json(ws3);
             const data4 = XLSX.utils.sheet_to_json(ws4);
-            setArr1(data1);
+            setArr1(data1);                                 // this is the way the data is set for that useState hook.
             setArr2(data2);
             setArr3(data3);
             setArr4(data4);
@@ -88,7 +89,7 @@ const LiborData = () => {
         }
 
     }
-
+   //the format and the selector column name for that data needs to be mentioned in the array of object format .It is named as columns over here.
     const columns = [
         {
             name: 'File Name',
@@ -196,6 +197,8 @@ const LiborData = () => {
         }
 
     ];
+
+    //object containing the row data as well as the column data that is used in DataTableExtensions.
     const tableData = {
         columns: columns,
         data: arr1,
@@ -219,14 +222,15 @@ const LiborData = () => {
             </div>
 
 
-            <Carousel responsive={responsive}>
+            <Carousel responsive={responsive}>     //this component creates a sliding type component where in the responsive field we can mention how
+                                                   //many items can be showed on a single page .
                 <Card>
                     <CardContent>
                         {arr1.length !== 0 &&
                         <div>
                             <Typography variant={"h4"} style={{color: "blue"}}>Libor Details</Typography>
-                            <DataTableExtensions  {...tableData} >
-                                < DataTable
+                            <DataTableExtensions  {...tableData} >    //this extension gives us the filter option as well as the export option
+                                < DataTable                      //Datatable component which has multiple properties is used here .there are more props that can be explored.
                                     selectableRows={"true"}
                                     highlightOnHover
                                     pagination={"true"}

@@ -37,9 +37,13 @@ createTheme('solarized', {
     },
 });
 
+    //in this file mostly html tags are used and the bootstrap library is used
+    //for the api call fetch client is used here and alternative can be axios as well.
 const Calculator = () => {
 
-    const[arr,setArr]=useState([]);
+    const[arr,setArr]=useState([]);   //this is hook in react .Hooks can be used when you are using functional components.
+                                                //arr is the variable name and setArr is like a function which is used to set the value of the arr
+                                                 //field .The concept is called destructuring.
 
     const columns=[
          {
@@ -159,7 +163,7 @@ const Calculator = () => {
         const url = "https://api.rfrcalculator.com/rfr"; // site that doesn’t send Access-Control-*
         var data1 = [];
         var html = '';
-        await fetch("http://localhost:3600/rfr_cal", requestOptions)
+        await fetch("http://localhost:3600/rfr_cal", requestOptions)   //here the api call is made and this api is hosted locally.
             .then(response => response.json())
             .then(result =>   result['CalcResponse']['AccrualResults'])
             .then(result1 => {setArr(result1)})

@@ -8,11 +8,13 @@ import Calculator from "./components/calculator";
 import PowerBI from "./components/powerbi";
 import {BrowserRouter as Router, Switch, Link, Route} from "react-router-dom";
 
+// index.js is the main file from which the whole app gets rendered.
+//use this file to add new routes and then you can link them with our app.
 ReactDOM.render(
-    <Router>
+    <Router>                      //router component is used here to define multiple paths inside our app
         <Switch>
-            <Route exact path={'/'} component={App}/>
-            <Route exact path={'/batchdetails'} component={Batchdata}/>
+            <Route exact path={'/'} component={App}/>                            //Route component is used to define the exact path and the component
+            <Route exact path={'/batchdetails'} component={Batchdata}/>          //that needs to be rendered when that path is called.
             <Route exact path={'/calculate'} component={Calculator}/>
             <Route exact path={'/powerbi'} component={PowerBI}/>
             <React.StrictMode>

@@ -1,5 +1,7 @@
 import React from "react";
 import Header from "../shared/header";
+
+//here only header component is used and iframe tag for that powerBI dashboard part.
 const PowerBI=()=>{
 
     return(
