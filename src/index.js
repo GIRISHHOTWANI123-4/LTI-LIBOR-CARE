@@ -5,6 +5,7 @@ import App from './App';
 import Batchdata from "./components/batchdata";
 import reportWebVitals from './reportWebVitals';
 import Calculator from "./components/calculator";
+import PowerBI from "./components/powerbi";
 import {BrowserRouter as Router, Switch, Link, Route} from "react-router-dom";
 
 ReactDOM.render(
@@ -13,6 +14,7 @@ ReactDOM.render(
             <Route exact path={'/'} component={App}/>
             <Route exact path={'/batchdetails'} component={Batchdata}/>
             <Route exact path={'/calculate'} component={Calculator}/>
+            <Route exact path={'/powerbi'} component={PowerBI}/>
             <React.StrictMode>
                 <App/>
             </React.StrictMode>

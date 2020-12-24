@@ -8,6 +8,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css"
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import DataTableExtensions from "react-data-table-component-extensions";
+import "react-data-table-component-extensions/dist/index.css";
 
 createTheme('solarized', {
     text: {
@@ -82,50 +84,61 @@ const LiborData = () => {
             setArr2(data2);
             setArr3(data3);
             setArr4(data4);
-            console.log("Data = ", data4);
+
         }
 
     }
+
     const columns = [
         {
             name: 'File Name',
             selector: 'File_Name',
+            sortable:'true',
         },
         {
             name: 'File Status',
             selector: 'File_Status',
+            sortable:'true',
         },
         {
             name: 'Contract Type',
             selector: 'Contract_Type',
+            sortable:'true',
         },
         {
             name: 'Libor Flag',
             selector: 'Libor_Flag',
+            sortable:'true',
         },
         {
             name: 'Sofr Flag',
             selector: 'Sofr_Flag',
+            sortable:'true',
         },
         {
-            name: 'End Date',
+            name: 'Termination Date',
             selector: 'Termination_Date',
+            sortable:'true',
         },
         {
             name: 'Effective Date',
             selector: 'Effective_Date',
+            sortable:'true',
         },
         {
-            name: 'Contract Amount',
+            name: 'Contract Amount($)',
             selector: 'Contract_Amount',
+            sortable:'true',
         },
         {
             name: 'Fallback Category',
             selector: 'Fallback_Category',
+            sortable:'true',
         },
         {
             name: 'Risk Profile',
             selector: 'Risk_Profile',
+            sortable:'true',
         },
     ];
 
@@ -133,10 +146,12 @@ const LiborData = () => {
         {
             name: "File Name",
             selector: "File_Name",
+            sortable:'true',
         },
         {
             name: "Borrower",
-            selector: "Borrowers"
+            selector: "Borrowers",
+            sortable:'true',
         }
     ];
 
@@ -144,14 +159,17 @@ const LiborData = () => {
         {
             name: "File Name",
             selector: "File_Name",
+            sortable:'true',
         },
         {
             name: "Lender",
             selector: "Lender",
+            sortable:'true',
         },
         {
             name: "Commitment",
             selector: "Commitment",
+            sortable:'true',
         }
     ]
 
@@ -159,22 +177,41 @@ const LiborData = () => {
         {
             name: "File Name",
             selector: "File_Name",
+            sortable:'true',
         },
         {
             name: "Fallback Clause",
             selector: "Fallback_Clause",
+            sortable:'true',
         },
         {
             name: "Fallback Paragraph",
             selector: "Fallback_Paragraph",
+            sortable:'true',
         },
         {
             name: "Page Number",
             selector: "Page_no",
+            sortable:'true',
         }
 
     ];
-
+    const tableData = {
+        columns: columns,
+        data: arr1,
+    };
+    const tableData1 = {
+        columns: columns1,
+        data: arr2,
+    };
+    const tableData2 = {
+        columns: columns2,
+        data: arr3,
+    };
+    const tableData3 = {
+        columns: columns3,
+        data: arr4,
+    };
     return (
         <div>
             <div>
@@ -188,7 +225,14 @@ const LiborData = () => {
                         {arr1.length !== 0 &&
                         <div>
                             <Typography variant={"h4"} style={{color: "blue"}}>Libor Details</Typography>
-                            < DataTable columns={columns} data={arr1} pagination theme={"solarized"}/>
+                            <DataTableExtensions  {...tableData} >
+                                < DataTable
+                                    selectableRows={"true"}
+                                    highlightOnHover
+                                    pagination={"true"}
+                                    theme={"solarized"}/>
+
+                            </DataTableExtensions>
                         </div>
                         }
                     </CardContent>
@@ -196,45 +240,61 @@ const LiborData = () => {
                 </Card>
 
                 <Card>
-                <CardContent>
-                    {arr1.length !== 0 &&
-                    <div>
-                        <Typography variant={"h4"} style={{color: "blue"}}>Borrowers Details</Typography>
-                        < DataTable columns={columns1} data={arr2} pagination theme={"solarized"}/>
-                    </div>
-                    }
-                </CardContent>
+                    <CardContent>
+                        {arr1.length !== 0 &&
+                        <div>
+                            <Typography variant={"h4"} style={{color: "blue"}}>Borrowers Details</Typography>
+                            <DataTableExtensions {...tableData1}>
+                            < DataTable
+                                pagination
+                                highlightOnHover
+                                theme={"solarized"}/>
 
-            </Card>
+                            </DataTableExtensions>
+                        </div>
+                        }
+                    </CardContent>
 
-                <Card>
-                <CardContent>
-                    {arr1.length !== 0 &&
-                    <div>
-                        <Typography variant={"h4"} style={{color: "blue"}}>Lenders Details</Typography>
-                        < DataTable columns={columns2} data={arr3} pagination theme={"solarized"}/>
-                    </div>
-                    }
-                </CardContent>
-
-            </Card>
+                </Card>
 
                 <Card>
-                <CardContent>
-                    {arr1.length !== 0 &&
-                    <div>
-                        <Typography variant={"h4"} style={{color: "blue"}}>Fallback Details</Typography>
-                        < DataTable columns={columns3} data={arr4} pagination theme={"solarized"}/>
-                    </div>
-                    }
-                </CardContent>
+                    <CardContent>
+                        {arr1.length !== 0 &&
+                        <div>
+                            <Typography variant={"h4"} style={{color: "blue"}}>Lenders Details</Typography>
+                            <DataTableExtensions {...tableData2}>
+                            < DataTable
+                                pagination
+                                highlightOnHover
+                                theme={"solarized"}/>
+                            </DataTableExtensions>
+                        </div>
+                        }
+                    </CardContent>
 
-            </Card>
+                </Card>
+
+                <Card>
+                    <CardContent>
+                        {arr1.length !== 0 &&
+                        <div>
+                            <Typography variant={"h4"} style={{color: "blue"}}>Fallback Details</Typography>
+                            <DataTableExtensions {...tableData3}>
+                            < DataTable
+                                highlightOnHover
+                                pagination
+                                theme={"solarized"}/>
+                            </DataTableExtensions>
+                        </div>
+                        }
+                    </CardContent>
+
+                </Card>
 
 
             </Carousel>
         </div>
-    )
+    );
 
 }
 

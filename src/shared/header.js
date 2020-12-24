@@ -43,8 +43,8 @@ const Header = () => {
                         {/*    <MenuIcon/>*/}
                         {/*</IconButton>*/}
 
-                        <Typography variant="h6">
-                            LTI LIBOR CARE
+                        <Typography variant="h5">
+                            LIBOR CARE
                         </Typography>
                         <div className={classes.toolbarButtons}>
 
@@ -57,21 +57,21 @@ const Header = () => {
                                 <b><i>Calculator    </i></b>
                             </NavLink>
 
-                            <NavLink to="/" style={{
+                            <NavLink to="/powerbi" style={{
                                 fontSize: "large",
                                 margin: "10px",
                                 color: 'inherit',
                                 textDecoration: 'inherit'
                             }}>
                                 <b><i>Power BI     </i></b>
-                            <NavLink to="/batchdetails" style={{
-                                fontSize: "large",
-                                margin: "10px",
-                                color: 'inherit',
-                                textDecoration: 'inherit'
-                            }}>
-                                <b><i>Get Batch Data     </i></b>
-                            </NavLink>
+                            {/*<NavLink to="/batchdetails" style={{*/}
+                            {/*    fontSize: "large",*/}
+                            {/*    margin: "10px",*/}
+                            {/*    color: 'inherit',*/}
+                            {/*    textDecoration: 'inherit'*/}
+                            {/*}}>*/}
+                            {/*    <b><i>Get Batch Data     </i></b>*/}
+                            {/*</NavLink>*/}
                             <NavLink to="/" style={{
                                 fontSize: "large",
                                 margin: "10px",
